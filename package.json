@@ -29,10 +29,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "http://github.com/hypeserver/react-date-range"
+    "url": "http://github.com/mostafahosseinidb/react-date-range"
   },
   "bugs": {
-    "url": "http://github.com/hypeserver/react-date-range/issues"
+    "url": "http://github.com/mostafahosseinidb/react-date-range/issues"
   },
   "browserslist": [
     "defaults"
