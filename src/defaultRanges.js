@@ -61,7 +61,7 @@ export const defaultStaticRanges = createStaticRanges([
     label: 'This Week',
     range: () => ({
       startDate: defineds.startOfWeek,
-      endDate: defineds.endOfWeek,
+      endDate: defineds.endOfToday,
     }),
   },
   {
@@ -75,7 +75,7 @@ export const defaultStaticRanges = createStaticRanges([
     label: 'This Month',
     range: () => ({
       startDate: defineds.startOfMonth,
-      endDate: defineds.endOfMonth,
+      endDate: defineds.endOfToday,
     }),
   },
   {
@@ -88,22 +88,37 @@ export const defaultStaticRanges = createStaticRanges([
 ]);
 
 export const defaultInputRanges = [
+  // {
+  //   label: 'days up to today',
+  //   range(value) {
+  //     return {
+  //       startDate: addDays(defineds.startOfToday, (Math.max(Number(value), 1) - 1) * -1),
+  //       endDate: defineds.endOfToday,
+  //     };
+  //   },
+  //   getCurrentValue(range) {
+  //     if (!isSameDay(range.endDate, defineds.endOfToday)) return '-';
+  //     if (!range.startDate) return '∞';
+  //     return differenceInCalendarDays(defineds.endOfToday, range.startDate) + 1;
+  //   },
+  // },
+  // {
+  //   label: 'days starting today',
+  //   range(value) {
+  //     const today = new Date();
+  //     return {
+  //       startDate: today,
+  //       endDate: addDays(today, Math.max(Number(value), 1) - 1),
+  //     };
+  //   },
+  //   getCurrentValue(range) {
+  //     if (!isSameDay(range.startDate, defineds.startOfToday)) return '-';
+  //     if (!range.endDate) return '∞';
+  //     return differenceInCalendarDays(range.endDate, defineds.startOfToday) + 1;
+  //   },
+  // },
   {
-    label: 'days up to today',
-    range(value) {
-      return {
-        startDate: addDays(defineds.startOfToday, (Math.max(Number(value), 1) - 1) * -1),
-        endDate: defineds.endOfToday,
-      };
-    },
-    getCurrentValue(range) {
-      if (!isSameDay(range.endDate, defineds.endOfToday)) return '-';
-      if (!range.startDate) return '∞';
-      return differenceInCalendarDays(defineds.endOfToday, range.startDate) + 1;
-    },
-  },
-  {
-    label: 'days starting today',
+    label: 'days Selected',
     range(value) {
       const today = new Date();
       return {
@@ -112,9 +127,11 @@ export const defaultInputRanges = [
       };
     },
     getCurrentValue(range) {
-      if (!isSameDay(range.startDate, defineds.startOfToday)) return '-';
-      if (!range.endDate) return '∞';
-      return differenceInCalendarDays(range.endDate, defineds.startOfToday) + 1;
+      console.log({ range });
+
+      // if (!isSameDay(range.startDate, defineds.startOfToday)) return '-';
+      // if (!range.endDate) return '∞';
+      return differenceInCalendarDays(range.endDate, range.startDate) + 1;
     },
   },
 ];
