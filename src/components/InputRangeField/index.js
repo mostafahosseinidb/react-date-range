@@ -12,11 +12,7 @@ class InputRangeField extends Component {
   shouldComponentUpdate(nextProps) {
     const { value, label, placeholder } = this.props;
 
-    return (
-      value !== nextProps.value ||
-      label !== nextProps.label ||
-      placeholder !== nextProps.placeholder
-    );
+    return value !== nextProps.value || label !== nextProps.label || placeholder !== nextProps.placeholder;
   }
 
   onChange = e => {
@@ -32,7 +28,9 @@ class InputRangeField extends Component {
     const { label, placeholder, value, styles, onBlur, onFocus } = this.props;
 
     return (
-      <div className={styles.inputRange}>
+      <div
+        className={styles.inputRange}
+        style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
         <input
           className={styles.inputRangeInput}
           placeholder={placeholder}
@@ -42,6 +40,7 @@ class InputRangeField extends Component {
           onChange={this.onChange}
           onFocus={onFocus}
           onBlur={onBlur}
+
         />
         <span className={styles.inputRangeLabel}>{label}</span>
       </div>
@@ -56,16 +55,16 @@ InputRangeField.propTypes = {
   styles: PropTypes.shape({
     inputRange: PropTypes.string,
     inputRangeInput: PropTypes.string,
-    inputRangeLabel: PropTypes.string,
+    inputRangeLabel: PropTypes.string
   }).isRequired,
   onBlur: PropTypes.func.isRequired,
   onFocus: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired
 };
 
 InputRangeField.defaultProps = {
   value: '',
-  placeholder: '-',
+  placeholder: '-'
 };
 
 export default InputRangeField;

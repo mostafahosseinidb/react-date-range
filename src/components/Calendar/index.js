@@ -99,9 +99,9 @@ class Calendar extends PureComponent {
   updateShownDate = (props = this.props) => {
     const newProps = props.scroll.enabled
       ? {
-        ...props,
-        months: this.list.getVisibleRange().length,
-      }
+          ...props,
+          months: this.list.getVisibleRange().length,
+        }
       : props;
     const newFocus = calcFocusDate(this.state.focusedDate, newProps);
     this.focusToDate(newFocus, newProps);
@@ -192,15 +192,6 @@ class Calendar extends PureComponent {
     const styles = this.styles;
     return (
       <div onMouseUp={e => e.stopPropagation()} className={styles.monthAndYearWrapper}>
-        {showMonthArrow ? (
-          <button
-            type="button"
-            className={classnames(styles.nextPrevButton, styles.prevButton)}
-            onClick={() => changeShownDate(-1, 'monthOffset')}
-            aria-label={ariaLabels.prevButton}>
-            <i />
-          </button>
-        ) : null}
         {showMonthAndYearPickers ? (
           <span className={styles.monthAndYearPickers}>
             <span className={styles.monthPicker}>
@@ -242,10 +233,48 @@ class Calendar extends PureComponent {
         {showMonthArrow ? (
           <button
             type="button"
+            className={classnames(styles.nextPrevButton, styles.prevButton)}
+            onClick={() => changeShownDate(-1, 'monthOffset')}
+            aria-label={ariaLabels.prevButton}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              style={{ marginTop: '4px' }}>
+              <path
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.5"
+                d="m15 5l-6 7l6 7"
+              />
+            </svg>
+          </button>
+        ) : null}
+
+        {showMonthArrow ? (
+          <button
+            type="button"
             className={classnames(styles.nextPrevButton, styles.nextButton)}
             onClick={() => changeShownDate(+1, 'monthOffset')}
             aria-label={ariaLabels.nextButton}>
-            <i />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              style={{ marginTop: '4px' }}>
+              <path
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.5"
+                d="m9 5l6 7l-6 7"
+              />
+            </svg>
           </button>
         ) : null}
       </div>
@@ -283,7 +312,7 @@ class Calendar extends PureComponent {
     const styles = this.styles;
 
     return (
-      <div className={styles.dateDisplayWrapper}>
+      <div className={styles.dateDisplayWrapper} style={{ width: '50%' }}>
         {ranges.map((range, i) => {
           if (range.showDateDisplay === false || (range.disabled && !range.showDateDisplay))
             return null;
@@ -310,6 +339,16 @@ class Calendar extends PureComponent {
                 onChange={this.onDragSelectionEnd}
                 onFocus={() => this.handleRangeFocusChange(i, 0)}
               />
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path
+                  fill="none"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
+                  d="M4 12h16m0 0l-6-6m6 6l-6 6"
+                />
+              </svg>
               <DateInput
                 className={classnames(styles.dateDisplayItem, {
                   [styles.dateDisplayItemActive]: focusedRange[0] === i && focusedRange[1] === 1,
@@ -427,7 +466,6 @@ class Calendar extends PureComponent {
         onMouseLeave={() => {
           this.setState({ drag: { status: false, range: {} } });
         }}>
-        {showDateDisplay && this.renderDateDisplay()}
         {monthAndYearRenderer(focusedDate, this.changeShownDate, this.props)}
         {scroll.enabled ? (
           <div>
@@ -521,6 +559,38 @@ class Calendar extends PureComponent {
             })}
           </div>
         )}
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            gap: '8px',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginRight: '8px',
+            marginLeft: '8px',
+          }}>
+          {showDateDisplay && this.renderDateDisplay()}
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'flex-center',
+              alignItems: 'center',
+              gap: '10px',
+            }}>
+            <button
+              onClick={this.props.handleCancel}
+              className={classnames('date-picker-button')}
+              style={{ background: '#ffffff', color: '#000000' }}>
+              Cancel
+            </button>
+            <button
+              onClick={this.props.handleApply}
+              className={classnames('date-picker-button')}
+              style={{ background: '#000' }}>
+              Set Date
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
@@ -530,7 +600,7 @@ Calendar.defaultProps = {
   showMonthArrow: true,
   showMonthAndYearPickers: true,
   disabledDates: [],
-  disabledDay: () => { },
+  disabledDay: () => {},
   classNames: {},
   locale: defaultLocale,
   ranges: [],
@@ -543,14 +613,14 @@ Calendar.defaultProps = {
   showPreview: true,
   displayMode: 'date',
   months: 1,
-  color: '#3d91ff',
+  color: '#000000',
   scroll: {
     enabled: false,
   },
   direction: 'vertical',
   maxDate: addYears(new Date(), 20),
   minDate: addYears(new Date(), -100),
-  rangeColors: ['#3d91ff', '#3ecf8e', '#fed14c'],
+  rangeColors: ['#000000', '#3ecf8e', '#fed14c'],
   startDatePlaceholder: 'Early',
   endDatePlaceholder: 'Continuous',
   editableDateInputs: false,
@@ -615,6 +685,8 @@ Calendar.propTypes = {
   calendarFocus: PropTypes.string,
   preventSnapRefocus: PropTypes.bool,
   ariaLabels: ariaLabelsShape,
+  handleApply: PropTypes.any,
+  handleCancel: PropTypes.any,
 };
 
 export default Calendar;

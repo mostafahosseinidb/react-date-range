@@ -128,6 +128,8 @@ class DateRange extends Component {
       <Calendar
         focusedRange={this.state.focusedRange}
         onRangeFocusChange={this.handleRangeFocusChange}
+        handleCancel={this.props.handleCancel}
+        handleApply={this.props.handleApply}
         preview={this.state.preview}
         onPreviewChange={value => {
           this.updatePreview(value ? this.calcNewSelection(value) : null);
@@ -150,7 +152,7 @@ DateRange.defaultProps = {
   ranges: [],
   moveRangeOnFirstSelection: false,
   retainEndDateOnFirstSelection: false,
-  rangeColors: ['#3d91ff', '#3ecf8e', '#fed14c'],
+  rangeColors: ['#000000', '#3ecf8e', '#fed14c'],
   disabledDates: [],
 };
 
@@ -162,6 +164,8 @@ DateRange.propTypes = {
   ranges: PropTypes.arrayOf(rangeShape),
   moveRangeOnFirstSelection: PropTypes.bool,
   retainEndDateOnFirstSelection: PropTypes.bool,
+  handleApply: PropTypes.any,
+  handleCancel: PropTypes.any,
 };
 
 export default DateRange;

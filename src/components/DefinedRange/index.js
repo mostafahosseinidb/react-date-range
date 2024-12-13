@@ -98,10 +98,11 @@ class DefinedRange extends Component {
             );
           })}
         </div>
-        <div className={styles.inputRanges}>
+        {/* <div className={styles.inputRanges}>
           {inputRanges.map((rangeOption, i) => (
             <InputRangeField
               key={i}
+              disabled
               styles={styles}
               label={rangeOption.label}
               onFocus={() => this.setState({ focusedInput: i, rangeOffset: 0 })}
@@ -110,7 +111,7 @@ class DefinedRange extends Component {
               value={this.getRangeOptionValue(rangeOption)}
             />
           ))}
-        </div>
+        </div> */}
         {footerContent}
       </div>
     );
@@ -135,7 +136,7 @@ DefinedRange.defaultProps = {
   inputRanges: defaultInputRanges,
   staticRanges: defaultStaticRanges,
   ranges: [],
-  rangeColors: ['#3d91ff', '#3ecf8e', '#fed14c'],
+  rangeColors: ['#000000', '#3ecf8e', '#fed14c'],
   focusedRange: [0, 0],
 };
 

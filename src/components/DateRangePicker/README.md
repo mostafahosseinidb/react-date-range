@@ -14,17 +14,20 @@ const [state, setState] = useState([
   }
 ]);
 
-<DateRangePicker
-  onChange={item => {
-    setState([item.selection]);
-    // console.log("------",{state},item);
-  }}
-  showSelectionPreview={true}
-  moveRangeOnFirstSelection={false}
-  months={2}
-  ranges={state}
-  direction="horizontal"
-/>;
+<div class={{width:'300px'}} class="sss">
+  <DateRangePicker
+    onChange={item => {
+      setState([item.selection]);
+      // console.log("------",{state},item);
+    }}
+    showSelectionPreview={true}
+    moveRangeOnFirstSelection={false}
+    months={2}
+    ranges={state}
+    direction="horizontal"
+  />
+  
+</div>;
 ```
 
 #### Example: Backwards 2 Month View with preventSnapRefocus

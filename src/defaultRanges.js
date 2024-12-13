@@ -9,6 +9,9 @@ import {
   endOfWeek,
   isSameDay,
   differenceInCalendarDays,
+  addYears,
+  startOfYear,
+  endOfYear,
 } from 'date-fns';
 
 const defineds = {
@@ -24,6 +27,10 @@ const defineds = {
   endOfMonth: endOfMonth(new Date()),
   startOfLastMonth: startOfMonth(addMonths(new Date(), -1)),
   endOfLastMonth: endOfMonth(addMonths(new Date(), -1)),
+  startOfLastYear: startOfYear(addYears(new Date(), -1)),
+  endOfLastYear: endOfYear(addYears(new Date(), -1)),
+  startOfYear: startOfYear(new Date()),
+  endOfYear: endOfYear(new Date()),
 };
 
 const staticRangeHandler = {
@@ -85,6 +92,28 @@ export const defaultStaticRanges = createStaticRanges([
       endDate: defineds.endOfLastMonth,
     }),
   },
+
+  {
+    label: 'This Year',
+    range: () => ({
+      startDate: defineds.startOfYear,
+      endDate: defineds.endOfToday,
+    }),
+  },
+  {
+    label: 'Last Year',
+    range: () => ({
+      startDate: defineds.startOfLastYear,
+      endDate: defineds.endOfLastYear,
+    }),
+  },
+  // {
+  //   label: 'Last 12 Month',
+  //   range: () => ({
+  //     startDate: defineds.startOfLastMonth,
+  //     endDate: defineds.endOfLastMonth,
+  //   }),
+  // },
 ]);
 
 export const defaultInputRanges = [
@@ -118,7 +147,7 @@ export const defaultInputRanges = [
   //   },
   // },
   {
-    label: 'days Selected',
+    label: 'Days Selected',
     range(value) {
       const today = new Date();
       return {
