@@ -128,7 +128,7 @@ OLD
     startDate={new Date()}
     endDate={new Date(2048, 6, 6)}
     onChange={ change => {
-      console.log(change);
+      // console.log(change);
       /* prints:
       {
         startDate: Moment,
@@ -148,7 +148,7 @@ NEW
       key: 'selection',
     }]}
     onChange={changes => {
-      console.log(changes);
+      // console.log(changes);
       /* prints
       {
         selection: {

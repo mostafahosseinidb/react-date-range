@@ -127,7 +127,7 @@ export const defaultInputRanges = [
       };
     },
     getCurrentValue(range) {
-      console.log({ range });
+      // console.log({ range });
 
       // if (!isSameDay(range.startDate, defineds.startOfToday)) return '-';
       // if (!range.endDate) return '∞';

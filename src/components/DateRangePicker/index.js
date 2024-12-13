@@ -8,6 +8,7 @@ import classnames from 'classnames';
 import coreStyles from '../../styles';
 
 function DateRangePicker(props) {
+  // Initial state from props
   const initialRanges = props.ranges || [
     { startDate: new Date(), endDate: new Date(), key: 'selection' },
   ];
@@ -37,6 +38,18 @@ function DateRangePicker(props) {
     ],
   });
 
+  // Update selected date text based on the current range
+  const updateSelectedDateText = range => {
+    const { startDate, endDate } = range;
+    if (startDate && endDate) {
+      const text = `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`;
+      setSelectedDateText(text);
+    } else {
+      setSelectedDateText('');
+    }
+  };
+
+  // Initialize selectedDateText once on mount
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     updateSelectedDateText(ranges[0]);
@@ -44,8 +57,17 @@ function DateRangePicker(props) {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // If props.ranges changes, update local state and selectedDateText
+  useEffect(() => {
+    setRanges(props.ranges);
+    if (props.ranges && props.ranges.length > 0) {
+      updateSelectedDateText(props.ranges[0]);
+    } else {
+      setSelectedDateText('');
+    }
+  }, [props.ranges]);
 
   const handleClickOutside = event => {
     if (showDropdown && containerRef.current && !containerRef.current.contains(event.target)) {
@@ -57,29 +79,31 @@ function DateRangePicker(props) {
     setShowDropdown(prev => !prev);
   };
 
+  // const handleRangeChange = range => {
+  //   const selectionKey = Object.keys(range)[0];
+  //   const updatedRange = range[selectionKey];
+  //   setRanges([updatedRange]);
+  //   updateSelectedDateText(updatedRange);
+  // };
+
   const handleRangeChange = range => {
     const selectionKey = Object.keys(range)[0];
     const updatedRange = range[selectionKey];
+
+    // Update the local state
     setRanges([updatedRange]);
     updateSelectedDateText(updatedRange);
-  };
 
-  const updateSelectedDateText = range => {
-    const { startDate, endDate } = range;
-    if (startDate && endDate) {
-      const text = `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`;
-      setSelectedDateText(text);
-    } else {
-      setSelectedDateText('');
+    // Call parent onChange callback if provided
+    if (props.onChange) {
+      props.onChange(range);
     }
   };
-
   const handleApply = () => {
     setShowDropdown(false);
   };
 
   const handleCancel = () => {
-    // Reset to initial selection (or no selection if preferred)
     setRanges([{ startDate: new Date(), endDate: new Date(), key: 'selection' }]);
     setSelectedDateText('');
     setShowDropdown(false);
@@ -135,7 +159,7 @@ function DateRangePicker(props) {
             <div
               style={{
                 display: 'flex',
-                justifyContent: 'flex-start',
+                justifyContent: 'flex-center',
                 gap: '10px',
                 marginTop: '10px',
               }}>
