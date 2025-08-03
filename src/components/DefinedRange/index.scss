@@ -1,20 +1,58 @@
-.rdrDefinedRangesWrapper{}
+.rdrDefinedRangesWrapper {
+}
 
-.rdrStaticRanges{
+.rdrStaticRanges {
   display: flex;
   flex-direction: column;
 }
 
-.rdrStaticRange{
+.rdrStaticRange {
   font-size: inherit;
 }
 
-.rdrStaticRangeLabel{}
+.rdrStaticRangeLabel {
+}
 
-.rdrInputRanges{}
+.rdrInputRanges {
+}
 
-.rdrInputRange{
+.rdrInputRange {
   display: flex;
 }
 
-.rdrInputRangeInput{}
+.rdrInputRangeInput {
+}
+
+.dateRangePickerWrapper.hide {
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: all 0.2s ease-out;
+}
+
+.dateRangePickerWrapper.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition: all 0.2s ease-in;
+}
+
+.date-picker-input {
+  width: 100%;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.date-picker-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.date-picker-button {
+  border-radius: 8px;
+  outline: none;
+  border: none;
+  background-color: #007bff;
+  padding: 8px 16px;
+  color: #fff;
+}
