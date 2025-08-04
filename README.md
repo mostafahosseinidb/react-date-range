@@ -1,8 +1,8 @@
-# React Date Range Picker
+# AustroByte Date Picker
 
-[![npm](https://img.shields.io/npm/v/mh-react-date-range)](https://www.npmjs.com/package/mh-react-date-range)
-[![npm](https://img.shields.io/npm/l/mh-react-date-range)]()
-[![npm](https://img.shields.io/npm/dw/mh-react-date-range)](https://www.npmjs.com/package/mh-react-date-range)
+[![npm](https://img.shields.io/npm/v/austroByteDatepicker)](https://www.npmjs.com/package/austroByteDatepicker)
+[![npm](https://img.shields.io/npm/l/austroByteDatepicker)]()
+[![npm](https://img.shields.io/npm/dw/austroByteDatepicker)](https://www.npmjs.com/package/austroByteDatepicker)
 
 A modern, feature-rich React component library for date and time selection. Built with TypeScript, powered by date-fns, and designed for excellent user experience.
 
@@ -21,7 +21,7 @@ A modern, feature-rich React component library for date and time selection. Buil
 ## 📦 Installation
 
 ```bash
-npm install mh-react-date-range
+npm install austroByteDatepicker
 ```
 
 ### Peer Dependencies
@@ -37,15 +37,15 @@ npm install react date-fns
 ### 1. Import Styles
 
 ```javascript
-import 'mh-react-date-range/dist/styles.css';
-import 'mh-react-date-range/dist/theme/default.css';
+import 'austroByteDatepicker/dist/styles.css';
+import 'austroByteDatepicker/dist/theme/default.css';
 ```
 
 ### 2. Basic Usage
 
 ```jsx
 import React, { useState } from 'react';
-import { Calendar, DateRangePicker, DateTimePicker } from 'mh-react-date-range';
+import { Calendar, DateRangePicker, DateTimePicker } from 'austroByteDatepicker';
 
 function App() {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -87,7 +87,7 @@ All picker components now support custom input elements, allowing you to complet
 
 ```jsx
 import React from 'react';
-import { DateRangePicker } from 'mh-react-date-range';
+import { DateRangePicker } from 'austroByteDatepicker';
 
 function App() {
   // Define your custom input element
@@ -140,7 +140,7 @@ function App() {
 ### Single Date Picker (Calendar)
 
 ```jsx
-import { Calendar } from 'mh-react-date-range';
+import { Calendar } from 'austroByteDatepicker';
 
 function CalendarExample() {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -171,7 +171,7 @@ function CalendarExample() {
 ### Date Range Picker
 
 ```jsx
-import { DateRangePicker } from 'mh-react-date-range';
+import { DateRangePicker } from 'austroByteDatepicker';
 
 function DateRangeExample() {
   const [dateRange, setDateRange] = useState({
@@ -200,7 +200,7 @@ function DateRangeExample() {
 ### Date Time Picker
 
 ```jsx
-import { DateTimePicker } from 'mh-react-date-range';
+import { DateTimePicker } from 'austroByteDatepicker';
 
 function DateTimeExample() {
   const [selectedDateTime, setSelectedDateTime] = useState(new Date());

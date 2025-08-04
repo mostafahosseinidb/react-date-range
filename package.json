@@ -1,7 +1,7 @@
 {
-  "name": "mh-react-date-range",
-  "version": "1.0.6",
-  "description": "A React component for choosing dates and date ranges.",
+  "name": "austroByteDatepicker",
+  "version": "1.0.0",
+  "description": "A comprehensive React date picker component with advanced features including date ranges, time picker, and customizable themes.",
   "main": "dist/index.js",
   "scripts": {
     "start": "yarn build:css & styleguidist server",
@@ -29,10 +29,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "http://github.com/mostafahosseinidb/react-date-range"
+    "url": "https://github.com/mostafahosseinidb/ReactDatePicker.git"
   },
   "bugs": {
-    "url": "http://github.com/mostafahosseinidb/react-date-range/issues"
+    "url": "https://github.com/mostafahosseinidb/ReactDatePicker/issues"
   },
   "browserslist": [
     "defaults"
