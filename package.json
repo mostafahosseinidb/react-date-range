@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "description": "A comprehensive React date picker component with advanced features including date ranges, time picker, and customizable themes.",
   "main": "dist/index.js",
-  "homepage": "https://mostafahosseinidb.github.io/ReactDatePicker",
+  "homepage": "https://www.npmjs.com/package/austro-byte-datepicker",
   "scripts": {
     "start": "yarn build:css & styleguidist server",
     "build": "yarn build:css & yarn build:js & styleguidist build",
