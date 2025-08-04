@@ -1,8 +1,8 @@
 # AustroByte Date Picker
 
-[![npm](https://img.shields.io/npm/v/austroByteDatepicker)](https://www.npmjs.com/package/austroByteDatepicker)
-[![npm](https://img.shields.io/npm/l/austroByteDatepicker)]()
-[![npm](https://img.shields.io/npm/dw/austroByteDatepicker)](https://www.npmjs.com/package/austroByteDatepicker)
+[![npm](https://img.shields.io/npm/v/austro-byte-datepicker)](https://www.npmjs.com/package/austro-byte-datepicker)
+[![npm](https://img.shields.io/npm/l/austro-byte-datepicker)]()
+[![npm](https://img.shields.io/npm/dw/austro-byte-datepicker)](https://www.npmjs.com/package/austro-byte-datepicker)
 
 A modern, feature-rich React component library for date and time selection. Built with TypeScript, powered by date-fns, and designed for excellent user experience.
 
@@ -21,7 +21,7 @@ A modern, feature-rich React component library for date and time selection. Buil
 ## 📦 Installation
 
 ```bash
-npm install austroByteDatepicker
+npm install austro-byte-datepicker
 ```
 
 ### Peer Dependencies
@@ -37,15 +37,15 @@ npm install react date-fns
 ### 1. Import Styles
 
 ```javascript
-import 'austroByteDatepicker/dist/styles.css';
-import 'austroByteDatepicker/dist/theme/default.css';
+import 'austro-byte-datepicker/dist/styles.css';
+import 'austro-byte-datepicker/dist/theme/default.css';
 ```
 
 ### 2. Basic Usage
 
 ```jsx
 import React, { useState } from 'react';
-import { Calendar, DateRangePicker, DateTimePicker } from 'austroByteDatepicker';
+import { Calendar, DateRangePicker, DateTimePicker } from 'austro-byte-datepicker';
 
 function App() {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -87,7 +87,7 @@ All picker components now support custom input elements, allowing you to complet
 
 ```jsx
 import React from 'react';
-import { DateRangePicker } from 'austroByteDatepicker';
+import { DateRangePicker } from 'austro-byte-datepicker';
 
 function App() {
   // Define your custom input element
@@ -140,7 +140,7 @@ function App() {
 ### Single Date Picker (Calendar)
 
 ```jsx
-import { Calendar } from 'austroByteDatepicker';
+import { Calendar } from 'austro-byte-datepicker';
 
 function CalendarExample() {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -171,7 +171,7 @@ function CalendarExample() {
 ### Date Range Picker
 
 ```jsx
-import { DateRangePicker } from 'austroByteDatepicker';
+import { DateRangePicker } from 'austro-byte-datepicker';
 
 function DateRangeExample() {
   const [dateRange, setDateRange] = useState({
@@ -200,7 +200,7 @@ function DateRangeExample() {
 ### Date Time Picker
 
 ```jsx
-import { DateTimePicker } from 'austroByteDatepicker';
+import { DateTimePicker } from 'austro-byte-datepicker';
 
 function DateTimeExample() {
   const [selectedDateTime, setSelectedDateTime] = useState(new Date());

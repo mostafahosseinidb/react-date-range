@@ -1,5 +1,5 @@
 {
-  "name": "austroByteDatepicker",
+  "name": "austro-byte-datepicker",
   "version": "1.0.0",
   "description": "A comprehensive React date picker component with advanced features including date ranges, time picker, and customizable themes.",
   "main": "dist/index.js",
