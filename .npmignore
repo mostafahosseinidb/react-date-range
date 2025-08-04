@@ -14,3 +14,11 @@ webpack/
 postcss.config.js
 styleguide.config.js
 yarn.lock
+src/
+jest.config.js
+setupTests.js
+.eslintignore
+.prettierrc
+**/*.test.js
+**/*.test.js.snap
+**/__snapshots__/
