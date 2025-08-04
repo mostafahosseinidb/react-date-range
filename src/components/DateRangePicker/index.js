@@ -259,7 +259,7 @@ function DateRangePicker(props) {
         }}>
         {renderInput()}
         {!customInput && (
-          <div style={{ position: 'absolute', top: '10px', right: '-25px', pointerEvents: 'none' }}>
+          <div style={{ position: 'absolute', top: '15px', right: '15px', pointerEvents: 'none' }}>
             {renderIcon()}
           </div>
         )}
