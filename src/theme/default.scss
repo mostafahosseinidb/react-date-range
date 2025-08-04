@@ -79,6 +79,9 @@
   border: 0;
   border-radius: 8px;
   background: #eff2f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   &:hover {
     background: #e1e7f0;
   }

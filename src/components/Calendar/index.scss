@@ -58,6 +58,13 @@
   box-sizing: inherit;
   cursor: pointer;
   outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
 }
 
 .rdrPprevButton {
