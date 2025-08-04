@@ -570,26 +570,28 @@ class Calendar extends PureComponent {
             marginLeft: '8px',
           }}>
           {showDateDisplay && this.renderDateDisplay()}
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'flex-center',
-              alignItems: 'center',
-              gap: '10px',
-            }}>
-            <button
-              onClick={this.props.handleCancel}
-              className={classnames('date-picker-button')}
-              style={{ background: '#ffffff', color: '#000000' }}>
-              Cancel
-            </button>
-            <button
-              onClick={this.props.handleApply}
-              className={classnames('date-picker-button')}
-              style={{ background: '#000' }}>
-              Set Date
-            </button>
-          </div>
+          {this.props.handleCancel && this.props.handleApply && (
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-center',
+                alignItems: 'center',
+                gap: '10px',
+              }}>
+              <button
+                onClick={this.props.handleCancel}
+                className={classnames('date-picker-button')}
+                style={{ background: '#ffffff', color: '#000000' }}>
+                Cancel
+              </button>
+              <button
+                onClick={this.props.handleApply}
+                className={classnames('date-picker-button')}
+                style={{ background: '#000' }}>
+                Set Date
+              </button>
+            </div>
+          )}
         </div>
       </div>
     );

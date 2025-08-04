@@ -67,6 +67,13 @@ exports[`InputRangeField tests Should parse input value to number 1`] = `
 >
   <div
     className="range"
+    style={
+      Object {
+        "alignItems": "flex-start",
+        "display": "flex",
+        "flexDirection": "column",
+      }
+    }
   >
     <input
       className="input"

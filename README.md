@@ -1,211 +1,364 @@
-# react-date-range
-[![npm](https://img.shields.io/npm/v/react-date-range)](https://www.npmjs.com/package/react-date-range)
-[![npm](https://img.shields.io/npm/l/react-date-range)]()
-[![npm](https://img.shields.io/npm/dw/react-date-range)](https://www.npmjs.com/package/react-date-range)
-[![sponsors](https://img.shields.io/github/sponsors/hypeserver)](https://github.com/sponsors/hypeserver)
+# React Date Range Picker
 
+[![npm](https://img.shields.io/npm/v/mh-react-date-range)](https://www.npmjs.com/package/mh-react-date-range)
+[![npm](https://img.shields.io/npm/l/mh-react-date-range)]()
+[![npm](https://img.shields.io/npm/dw/mh-react-date-range)](https://www.npmjs.com/package/mh-react-date-range)
 
-A date library agnostic React component for choosing dates and date ranges. Uses [date-fns](http://date-fns.org/) for date operations.
+A modern, feature-rich React component library for date and time selection. Built with TypeScript, powered by date-fns, and designed for excellent user experience.
 
-# Notice ⚠️
-This project is currently unmaintained because the original maintainers are busy with other things. It should be pretty stable in it's current state but we won't be updating it in the foreseeable future. **If you are willing to maintain it, please fork and open a pr adding your fork's link to this readme.**
+## ✨ Features
 
-### Why should you use `react-date-range`?
+- 🗓️ **Multiple Date Pickers**: Single date, date range, and date-time pickers
+- 🎨 **Highly Customizable**: Extensive theming and styling options
+- ♿ **Accessibility First**: Full ARIA support and keyboard navigation
+- 📱 **Mobile Responsive**: Works seamlessly on all devices
+- 🚀 **Performance Optimized**: Built with React hooks and memoization
+- 🎯 **TypeScript Ready**: Full TypeScript support
+- 🕐 **Time Selection**: 12-hour and 24-hour format support
+- 🎪 **Drag & Drop**: Intuitive date range selection
+- 🌍 **Internationalization**: Multi-language support via date-fns locales
 
-- Stateless date operations
-- Highly configurable
-- Multiple range selection
-- Based on native js dates
-- Drag n Drop selection
-- Keyboard friendly
+## 📦 Installation
 
-**Live Demo :** [http://hypeserver.github.io/react-date-range](http://hypeserver.github.io/react-date-range)
-
-![](https://raw.githubusercontent.com/hypeserver/react-date-range/master/demo/ss.png)
-
-
-## Getting Started
-### Installation
-
-```
-npm install --save react-date-range
-```
-This plugin expects `react` and `date-fns` as peerDependencies, It means that you need to install them in your project folder.
-
-```
-npm install --save react date-fns
+```bash
+npm install mh-react-date-range
 ```
 
-## Usage
+### Peer Dependencies
 
-You need to import skeleton and theme styles first.
+This package requires React and date-fns as peer dependencies:
+
+```bash
+npm install react date-fns
+```
+
+## 🚀 Quick Start
+
+### 1. Import Styles
 
 ```javascript
-import 'react-date-range/dist/styles.css'; // main style file
-import 'react-date-range/dist/theme/default.css'; // theme css file
+import 'mh-react-date-range/dist/styles.css';
+import 'mh-react-date-range/dist/theme/default.css';
 ```
 
-### `DatePicker`
-```javascript
-import { Calendar } from 'react-date-range';
+### 2. Basic Usage
 
-class MyComponent extends Component {
-  handleSelect(date){
-    console.log(date); // native Date object
-  }
-  render(){
-    return (
+```jsx
+import React, { useState } from 'react';
+import { Calendar, DateRangePicker, DateTimePicker } from 'mh-react-date-range';
+
+function App() {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [dateRange, setDateRange] = useState({
+    startDate: new Date(),
+    endDate: new Date(),
+  });
+  const [selectedDateTime, setSelectedDateTime] = useState(new Date());
+
+  return (
+    <div>
+      {/* Single Date Picker */}
       <Calendar
-        date={new Date()}
-        onChange={this.handleSelect}
+        date={selectedDate}
+        onChange={setSelectedDate}
       />
-    )
-  }
-}
 
-```
-
-### `DateRangePicker / DateRange`
-```javascript
-import { DateRangePicker } from 'react-date-range';
-
-class MyComponent extends Component {
-  handleSelect(ranges){
-    // console.log(ranges);
-    // {
-    //   selection: {
-    //     startDate: [native Date Object],
-    //     endDate: [native Date Object],
-    //   }
-    // }
-  }
-  render(){
-    const selectionRange = {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: 'selection',
-    }
-    return (
+      {/* Date Range Picker */}
       <DateRangePicker
-        ranges={[selectionRange]}
-        onChange={this.handleSelect}
+        ranges={[dateRange]}
+        onChange={setDateRange}
       />
-    )
-  }
+
+      {/* DateTime Picker */}
+      <DateTimePicker
+        date={selectedDateTime}
+        onChange={setSelectedDateTime}
+      />
+    </div>
+  );
 }
-
 ```
 
-### Options
+## 🎨 Custom Input Support
 
-Property                             | type      | Default Value    | Description
--------------------------------------|-----------|------------------|-----------------------------------------------------------------
-locale                               | Object    | enUS from locale | you can view full list from [here](https://github.com/hypeserver/react-date-range/tree/next/src/locale/index.js). Locales directly exported from [`date-fns/locales`](https://date-fns.org/docs/I18n#supported-languages).
-className                            | String    |                  | wrapper classname
-months                               | Number    | 1                | rendered month count
-showSelectionPreview                 | Boolean   | true             | show preview on focused/hovered dates
-showMonthAndYearPickers              | Boolean   | true             | show select tags for month and year on calendar top, if false it will just display the month and year
-rangeColors                          | String[]  |                  | defines color for selection preview.
-shownDate                            | Date      |                  | initial focus date
-minDate                              | Date      |                  | defines minimum date. Disabled earlier dates
-maxDate                              | Date      |                  | defines maximum date. Disabled later dates
-direction                            | String    | 'vertical'       | direction of calendar months. can be `vertical` or `horizontal`
-disabledDates                        | Date[]    | []               | dates that are disabled
-disabledDay                          | Func      |                  | predicate function that disable day fn(date: Date)
-scroll                               | Object    | { enabled: false }| infinite scroll behaviour configuration. Check out [Infinite Scroll](#infinite-scrolled-mode) section
-showMonthArrow                       | Boolean   | true             | show/hide month arrow button
-navigatorRenderer                    | Func      |                  | renderer for focused date navigation area. fn(currentFocusedDate: Date, changeShownDate: func, props: object)
-ranges                               | *Object[] | []               | Defines ranges. array of range object
-moveRangeOnFirstSelection(DateRange) | Boolean   | false            | move range on startDate selection. Otherwise endDate will replace with startDate unless `retainEndDateOnFirstSelection` is set to true.
-retainEndDateOnFirstSelection(DateRange) | Boolean   | false            | Retain end date when the start date is changed, unless start date is later than end date. Ignored if `moveRangeOnFirstSelection` is set to true.
-onChange(Calendar)                   | Func      |                  | callback function for date changes. fn(date: Date)
-onChange(DateRange)                  | Func      |                  | callback function for range changes. fn(changes). changes contains changed ranges with new `startDate`/`endDate` properties.
-color(Calendar)                      | String    | `#3d91ff`        | defines color for selected date in Calendar
-date(Calendar)                       | Date      |                  | date value for Calendar
-showDateDisplay(DateRange)           | Boolean   | true             | show/hide selection display row. Uses `dateDisplayFormat` for formatter
-onShownDateChange(DateRange,Calendar)| Function  |                  | Callback function that is called when the shown date changes
-initialFocusedRange(DateRange)       | Object    |                  | Initial value for focused range. See `focusedRange` for usage.
-focusedRange(DateRange)              | Object    |                  | It defines which range and step are focused. Common initial value is `[0, 0]`; first value is index of ranges, second one is which step on date range(startDate or endDate).
-onRangeFocusChange(DateRange)        | Object    |                  | Callback function for focus changes
-preview(DateRange)                   | Object    |                  | displays a preview range and overwrite DateRange's default preview. Expected shape: `{ startDate: Date, endDate: Date, color: String }`
-showPreview(DateRange)               | bool      | true             | visibility of preview
-editableDateInputs(Calendar)         | bool      | false            | whether dates can be edited in the Calendar's input fields
-dragSelectionEnabled(Calendar)       | bool      | true             | whether dates can be selected via drag n drop
-calendarFocus(Calendar)              | String    | 'forwards'       | Whether calendar focus month should be forward-driven or backwards-driven. can be 'forwards' or 'backwards'
-preventSnapRefocus(Calendar)  | bool      | false            | prevents unneceessary refocus of shown range on selection
-onPreviewChange(DateRange)           | Object    |                  | Callback function for preview changes
-dateDisplayFormat                    | String    | `MMM d, yyyy`    | selected range preview formatter. Check out [date-fns's format option](https://date-fns.org/docs/format)
-dayDisplayFormat                     | String    | `d`              | selected range preview formatter. Check out [date-fns's format option](https://date-fns.org/docs/format)
-weekdayDisplayFormat                 | String    | `E`              | selected range preview formatter. Check out [date-fns's format option](https://date-fns.org/docs/format)
-monthDisplayFormat                   | String    | `MMM yyyy`       | selected range preview formatter. Check out [date-fns's format option](https://date-fns.org/docs/format)
-weekStartsOn                         | Number    |                  | Whether the week start day that comes from the locale will be overriden. Default value comes from your locale, if no local is specified, note that default locale is enUS
-startDatePlaceholder                 | String    | `Early`          | Start Date Placeholder
-endDatePlaceholder                   | String    | `Continuous`     | End Date Placeholder
-fixedHeight                          | Boolean   | false            | Since some months require less than 6 lines to show, by setting this prop, you can force 6 lines for all months.
-renderStaticRangeLabel(`DefinedRange`)| Function |                  | Callback function to be triggered for the static range configurations that have `hasCustomRendering: true` on them. Instead of rendering `staticRange.label`, return value of this callback will be rendered.
-staticRanges(`DefinedRange`, `DateRangePicker`)  | Array            | [default preDefined ranges](https://github.com/hypeserver/react-date-range/blob/master/src/defaultRanges.js)             | -
-inputRanges(`DefinedRange`, `DateRangePicker`)   | Array            | [default input ranges](https://github.com/hypeserver/react-date-range/blob/master/src/defaultRanges.js)             | -
-ariaLabels                           | Object    | {}               | inserts aria-label to inner elements
-dayContentRenderer                   | Function  | null             | Function to customize the rendering of Calendar Day. given a date is supposed to return what to render.
+All picker components now support custom input elements, allowing you to completely customize the appearance and behavior of the input field.
 
- *shape of range:
- ```js
-  {
-    startDate: PropTypes.object,
-    endDate: PropTypes.object,
-    color: PropTypes.string,
-    key: PropTypes.string,
-    autoFocus: PropTypes.bool,
-    disabled: PropTypes.bool,
-    showDateDisplay: PropTypes.bool,
+### Using Custom Inputs
+
+```jsx
+import React from 'react';
+import { DateRangePicker } from 'mh-react-date-range';
+
+function App() {
+  // Define your custom input element
+  const customInput = (
+    <div
+      style={{
+        padding: '16px 20px',
+        border: '2px solid #e74c3c',
+        borderRadius: '8px',
+        backgroundColor: '#fdf2f2',
+        color: '#c0392b',
+        fontSize: '18px',
+        fontWeight: 'bold',
+        cursor: 'pointer',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+      }}>
+      <span>📅 Select Date Range</span>
+      <span>🗓️</span>
+    </div>
+  );
+
+  return (
+    <DateRangePicker
+      ranges={[dateRange]}
+      onChange={setDateRange}
+      customInput={customInput}
+    />
+  );
+}
+```
+
+### Custom Input Features
+
+- **Automatic Props**: The component automatically handles all necessary props (ref, onClick, onKeyDown, etc.)
+- **Value Management**: Your custom input receives the selected value and placeholder
+- **Accessibility**: All ARIA attributes and keyboard navigation are preserved
+- **Flexible Styling**: Complete control over appearance and layout
+- **Icon Support**: Include your own icons or styling elements
+
+### Available Components with Custom Input Support
+
+- `Calendar` - Single date picker
+- `DateRangePicker` - Date range picker  
+- `DateTimePicker` - Date and time picker
+
+## 📚 Component Examples
+
+### Single Date Picker (Calendar)
+
+```jsx
+import { Calendar } from 'mh-react-date-range';
+
+function CalendarExample() {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  return (
+    <Calendar
+      date={selectedDate}
+      onChange={setSelectedDate}
+      color="#3d91ff"
+      showMonthAndYearPickers={true}
+      showMonthArrow={true}
+      minDate={new Date(2020, 0, 1)}
+      maxDate={new Date(2030, 11, 31)}
+      disabledDates={[
+        new Date(2024, 0, 1), // New Year's Day
+        new Date(2024, 6, 4), // Independence Day
+      ]}
+      disabledDay={date => {
+        // Disable weekends
+        const day = date.getDay();
+        return day === 0 || day === 6;
+      }}
+    />
+  );
+}
+```
+
+### Date Range Picker
+
+```jsx
+import { DateRangePicker } from 'mh-react-date-range';
+
+function DateRangeExample() {
+  const [dateRange, setDateRange] = useState({
+    startDate: new Date(),
+    endDate: new Date(),
+    key: 'selection',
+  });
+
+  return (
+    <DateRangePicker
+      ranges={[dateRange]}
+      onChange={(ranges) => setDateRange(ranges.selection)}
+      showSelectionPreview={true}
+      moveRangeOnFirstSelection={false}
+      months={2} // Show 2 months side by side (default: 2)
+      direction="horizontal"
+      rangeColors={['#3d91ff']}
+      minDate={new Date(2020, 0, 1)}
+      maxDate={new Date(2030, 11, 31)}
+      placeholder="Select date range"
+    />
+  );
+}
+```
+
+### Date Time Picker
+
+```jsx
+import { DateTimePicker } from 'mh-react-date-range';
+
+function DateTimeExample() {
+  const [selectedDateTime, setSelectedDateTime] = useState(new Date());
+
+  return (
+    <div>
+      {/* 12-Hour Format */}
+      <DateTimePicker
+        date={selectedDateTime}
+        onChange={setSelectedDateTime}
+        placeholder="Select date and time (12-hour)"
+        hour12={true}
+        color="#3d91ff"
+      />
+
+      {/* 24-Hour Format */}
+      <DateTimePicker
+        date={selectedDateTime}
+        onChange={setSelectedDateTime}
+        placeholder="Select date and time (24-hour)"
+        hour12={false}
+        color="#ff6b6b"
+      />
+
+      {/* Date Only (No Time Selection) */}
+      <DateTimePicker
+        date={selectedDateTime}
+        onChange={setSelectedDateTime}
+        placeholder="Select date only"
+        showTime={false}
+        color="#28a745"
+      />
+
+      {/* With Date Restrictions */}
+      <DateTimePicker
+        date={selectedDateTime}
+        onChange={setSelectedDateTime}
+        minDate={new Date(2024, 0, 1)}
+        maxDate={new Date(2024, 11, 31)}
+        disabledDates={[
+          new Date(2024, 0, 1),
+          new Date(2024, 6, 4),
+        ]}
+        disabledDay={date => {
+          const day = date.getDay();
+          return day === 0 || day === 6;
+        }}
+      />
+    </div>
+  );
+}
+```
+
+**Features:**
+- **Today Button**: Quick access to set current date and time
+- **Time Selection**: Optional time picker with 12/24-hour format support
+- **Date Only Mode**: Can be configured to show only date selection
+- **Custom Input Support**: Use your own input elements
+
+### Custom Styling
+
+```jsx
+// Custom CSS
+const customStyles = `
+  .custom-date-picker {
+    border: 2px solid #ff6b6b;
+    border-radius: 8px;
   }
-```
 
- **shape of ariaLabels:
- ```js
-  {
-    // The key of dateInput should be same as key in range.
-    dateInput: PropTypes.objectOf(
-      PropTypes.shape({
-        startDate: PropTypes.string,
-        endDate: PropTypes.string
-      })
-    ),
-    monthPicker: PropTypes.string,
-    yearPicker: PropTypes.string,
-    prevButton: PropTypes.string,
-    nextButton: PropTypes.string,
+  .custom-input {
+    background-color: #fff5f5;
+    border: 1px solid #ff6b6b;
+    border-radius: 4px;
+    padding: 10px 12px;
+    font-size: 14px;
   }
+
+  .custom-input:focus {
+    outline: none;
+    border-color: #ff6b6b;
+    box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2);
+  }
+`;
+
+function CustomStyledExample() {
+  return (
+    <div>
+      <style>{customStyles}</style>
+      
+      <DateRangePicker
+        ranges={[dateRange]}
+        onChange={handleRangeChange}
+        className="custom-date-picker"
+        inputClassName="custom-input"
+        placeholder="Custom styled picker"
+      />
+
+      <DateTimePicker
+        date={selectedDateTime}
+        onChange={setSelectedDateTime}
+        className="custom-date-picker"
+        inputClassName="custom-input"
+        placeholder="Custom styled date time picker"
+      />
+    </div>
+  );
+}
 ```
-#### Infinite Scrolled Mode
 
-To enable infinite scroll set `scroll={{enabled: true}}` basically. Infinite scroll feature is affected by `direction`(rendering direction for months) and `months`(for rendered months count) props directly.
-If you prefer, you can overwrite calendar sizes with `calendarWidth`/`calendarHeight` or each month's height/width with `monthWidth`/`monthHeight`/`longMonthHeight` at `scroll` prop.
+## ⚙️ Configuration Options
 
-```js
-  // shape of scroll prop
-  scroll: {
-    enabled: PropTypes.bool,
-    monthHeight: PropTypes.number,
-    longMonthHeight: PropTypes.number, // some months has 1 more row than others
-    monthWidth: PropTypes.number, // just used when direction="horizontal"
-    calendarWidth: PropTypes.number, // defaults monthWidth * months
-    calendarHeight: PropTypes.number, // defaults monthHeight * months
-  }),
-```
+### Common Props
 
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Wrapper CSS class name |
+| `color` | `string` | `#3d91ff` | Primary color for selections |
+| `minDate` | `Date` | - | Minimum selectable date |
+| `maxDate` | `Date` | - | Maximum selectable date |
+| `disabledDates` | `Date[]` | `[]` | Array of disabled dates |
+| `disabledDay` | `function` | - | Function to disable specific days |
+| `locale` | `object` | `enUS` | Date-fns locale object |
 
-### Release workflow
-- Merge everything that needs to be in the release to master
-- Open a new release PR than:
-  - bumps version to appropriate one <new_version>
-  - Update CHANGELOG.md
-- Make sure the demo and important features are working as expected
-- After merging, tag the master commit with `release/<new_version>` and let Github Action handle publishing
-- = Profit 🙈
+### Calendar Props
 
-### TODOs
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `date` | `Date` | - | Selected date value |
+| `onChange` | `function` | - | Date change callback |
+| `showMonthAndYearPickers` | `boolean` | `true` | Show month/year selectors |
+| `showMonthArrow` | `boolean` | `true` | Show month navigation arrows |
+| `dragSelectionEnabled` | `boolean` | `true` | Enable drag selection |
+| `customInput` | `element` | - | Custom input element to use instead of default |
 
-- Make mobile friendly (integrate tap and swipe actions)
-- Add tests
-- Improve documentation
+### DateRangePicker Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `ranges` | `array` | `[]` | Array of range objects |
+| `onChange` | `function` | - | Range change callback |
+| `showSelectionPreview` | `boolean` | `true` | Show selection preview |
+| `moveRangeOnFirstSelection` | `boolean` | `false` | Move range on first selection |
+| `months` | `number` | `2` | Number of months to display side by side |
+| `direction` | `string` | `'horizontal'` | `'vertical'` or `'horizontal'` |
+| `rangeColors` | `array` | - | Colors for range selections |
+| `placeholder` | `string` | - | Input placeholder text |
+| `customInput` | `element` | - | Custom input element to use instead of default |
+
+### DateTimePicker Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `date` | `Date` | - | Selected date and time |
+| `onChange` | `function` | - | Date/time change callback |
+| `hour12` | `boolean` | `true` | Use 12-hour format |
+| `showTime` | `boolean` | `true` | Show time selection (false = date only) |
+| `placeholder` | `string` | - | Input placeholder text |
+| `inputClassName` | `string` | - | Input CSS class name |
+| `customInput` | `element` | - | Custom input element to use instead of default |
+
+## 🎨 Theming

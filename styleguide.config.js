@@ -9,7 +9,7 @@ module.exports = {
   require: [
     path.join(__dirname, 'dist/styles.css'),
     path.join(__dirname, 'dist/theme/default.css'),
-    path.join(__dirname, 'demo/styles.css')
+    path.join(__dirname, 'demo/styles.css'),
   ],
   template: {
     head: {
@@ -79,7 +79,7 @@ module.exports = {
         },
         {
           test: /\.css$/,
-          use: ["style-loader", "css-loader"],
+          use: ['style-loader', 'css-loader'],
         },
         {
           test: /\.svg$/,
@@ -96,24 +96,29 @@ module.exports = {
       sectionDepth: 0,
     },
     {
-      name: 'Components',
-      sections: [
-        {
-          components: () => ['src/components/DateRangePicker/index.js'],
-          usageMode: 'hide',
-        },
-        {
-          components: () => ['src/components/DateRange/index.js'],
-          usageMode: 'hide',
-        },
-        {
-          components: () => ['src/components/Calendar/index.js'],
-        },
-        {
-          components: () => ['src/components/DefinedRange/index.js'],
-        },
-      ],
+      name: 'Comprehensive Demo',
+      content: 'demo/ComprehensiveDemo.md',
       sectionDepth: 0,
     },
+    // {
+    //   name: 'Componentss',
+    //   sections: [
+    //     {
+    //       components: () => ['src/components/DateRangePicker/index.js'],
+    //       usageMode: 'hide',
+    //     },
+    //     {
+    //       components: () => ['src/components/DateRange/index.js'],
+    //       usageMode: 'hide',
+    //     },
+    //     {
+    //       components: () => ['src/components/Calendar/index.js'],
+    //     },
+    //     {
+    //       components: () => ['src/components/DefinedRange/index.js'],
+    //     },
+    //   ],
+    //   sectionDepth: 0,
+    // },
   ],
 };
