@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A comprehensive React date picker component with advanced features including date ranges, time picker, and customizable themes.",
   "main": "dist/index.js",
+  "homepage": "https://mostafahosseinidb.github.io/ReactDatePicker",
   "scripts": {
     "start": "yarn build:css & styleguidist server",
     "build": "yarn build:css & yarn build:js & styleguidist build",
@@ -10,7 +11,8 @@
     "build:js": "babel ./src --out-dir ./dist --ignore test.js",
     "lint": "eslint 'src/**/*.js'",
     "test": "jest",
-    "preversion": "yarn clear & yarn build"
+    "preversion": "yarn clear & yarn build",
+    "demo": "open index.html"
   },
   "keywords": [
     "react",
