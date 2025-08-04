@@ -1,4 +1,4 @@
-# AustroByte Date Picker
+# 🗓️ AustroByte Date Picker
 
 [![npm](https://img.shields.io/npm/v/austro-byte-datepicker)](https://www.npmjs.com/package/austro-byte-datepicker)
 [![npm](https://img.shields.io/npm/l/austro-byte-datepicker)]()
@@ -99,13 +99,14 @@ function App() {
         borderRadius: '8px',
         backgroundColor: '#fdf2f2',
         color: '#c0392b',
-        fontSize: '18px',
-        fontWeight: 'bold',
+        fontSize: '16px',
+        fontWeight: '600',
         cursor: 'pointer',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-      }}>
+      }}
+    >
       <span>📅 Select Date Range</span>
       <span>🗓️</span>
     </div>
@@ -115,29 +116,21 @@ function App() {
     <DateRangePicker
       ranges={[dateRange]}
       onChange={setDateRange}
+      inputRanges={[]}
+      staticRanges={[]}
+      showSelectionPreview={true}
+      moveRangeOnFirstSelection={false}
+      months={2}
+      direction="horizontal"
       customInput={customInput}
     />
   );
 }
 ```
 
-### Custom Input Features
+## 📅 Component Examples
 
-- **Automatic Props**: The component automatically handles all necessary props (ref, onClick, onKeyDown, etc.)
-- **Value Management**: Your custom input receives the selected value and placeholder
-- **Accessibility**: All ARIA attributes and keyboard navigation are preserved
-- **Flexible Styling**: Complete control over appearance and layout
-- **Icon Support**: Include your own icons or styling elements
-
-### Available Components with Custom Input Support
-
-- `Calendar` - Single date picker
-- `DateRangePicker` - Date range picker  
-- `DateTimePicker` - Date and time picker
-
-## 📚 Component Examples
-
-### Single Date Picker (Calendar)
+### Calendar Component
 
 ```jsx
 import { Calendar } from 'austro-byte-datepicker';
@@ -149,26 +142,18 @@ function CalendarExample() {
     <Calendar
       date={selectedDate}
       onChange={setSelectedDate}
-      color="#3d91ff"
-      showMonthAndYearPickers={true}
-      showMonthArrow={true}
       minDate={new Date(2020, 0, 1)}
       maxDate={new Date(2030, 11, 31)}
-      disabledDates={[
-        new Date(2024, 0, 1), // New Year's Day
-        new Date(2024, 6, 4), // Independence Day
-      ]}
-      disabledDay={date => {
-        // Disable weekends
-        const day = date.getDay();
-        return day === 0 || day === 6;
-      }}
+      disabledDates={[new Date(2024, 11, 25)]}
+      showMonthDropdown={true}
+      showYearDropdown={true}
+      dropdownMode="select"
     />
   );
 }
 ```
 
-### Date Range Picker
+### DateRangePicker Component
 
 ```jsx
 import { DateRangePicker } from 'austro-byte-datepicker';
@@ -177,27 +162,25 @@ function DateRangeExample() {
   const [dateRange, setDateRange] = useState({
     startDate: new Date(),
     endDate: new Date(),
-    key: 'selection',
   });
 
   return (
     <DateRangePicker
       ranges={[dateRange]}
-      onChange={(ranges) => setDateRange(ranges.selection)}
+      onChange={setDateRange}
+      months={2}
+      direction="horizontal"
       showSelectionPreview={true}
       moveRangeOnFirstSelection={false}
-      months={2} // Show 2 months side by side (default: 2)
-      direction="horizontal"
-      rangeColors={['#3d91ff']}
-      minDate={new Date(2020, 0, 1)}
-      maxDate={new Date(2030, 11, 31)}
-      placeholder="Select date range"
+      rangeColors={['#3d91ff', '#e74c3c', '#28a745']}
+      showDateDisplay={true}
+      showMonthAndYearPickers={true}
     />
   );
 }
 ```
 
-### Date Time Picker
+### DateTimePicker Component
 
 ```jsx
 import { DateTimePicker } from 'austro-byte-datepicker';
@@ -206,159 +189,214 @@ function DateTimeExample() {
   const [selectedDateTime, setSelectedDateTime] = useState(new Date());
 
   return (
-    <div>
-      {/* 12-Hour Format */}
-      <DateTimePicker
-        date={selectedDateTime}
-        onChange={setSelectedDateTime}
-        placeholder="Select date and time (12-hour)"
-        hour12={true}
-        color="#3d91ff"
-      />
-
-      {/* 24-Hour Format */}
-      <DateTimePicker
-        date={selectedDateTime}
-        onChange={setSelectedDateTime}
-        placeholder="Select date and time (24-hour)"
-        hour12={false}
-        color="#ff6b6b"
-      />
-
-      {/* Date Only (No Time Selection) */}
-      <DateTimePicker
-        date={selectedDateTime}
-        onChange={setSelectedDateTime}
-        placeholder="Select date only"
-        showTime={false}
-        color="#28a745"
-      />
-
-      {/* With Date Restrictions */}
-      <DateTimePicker
-        date={selectedDateTime}
-        onChange={setSelectedDateTime}
-        minDate={new Date(2024, 0, 1)}
-        maxDate={new Date(2024, 11, 31)}
-        disabledDates={[
-          new Date(2024, 0, 1),
-          new Date(2024, 6, 4),
-        ]}
-        disabledDay={date => {
-          const day = date.getDay();
-          return day === 0 || day === 6;
-        }}
-      />
-    </div>
+    <DateTimePicker
+      date={selectedDateTime}
+      onChange={setSelectedDateTime}
+      showTimeSelect={true}
+      timeFormat="HH:mm"
+      timeIntervals={15}
+      timeCaption="Time"
+      dateFormat="MMMM d, yyyy h:mm aa"
+      showTimeSelectOnly={false}
+      timeClassName={() => 'custom-time-class'}
+    />
   );
 }
 ```
 
-**Features:**
-- **Today Button**: Quick access to set current date and time
-- **Time Selection**: Optional time picker with 12/24-hour format support
-- **Date Only Mode**: Can be configured to show only date selection
-- **Custom Input Support**: Use your own input elements
+## 🎨 Theming and Customization
 
-### Custom Styling
+### Custom CSS Variables
+
+```css
+:root {
+  --date-picker-primary-color: #3d91ff;
+  --date-picker-secondary-color: #2c5aa0;
+  --date-picker-border-radius: 8px;
+  --date-picker-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto;
+  --date-picker-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+```
+
+### Custom Theme
 
 ```jsx
-// Custom CSS
-const customStyles = `
-  .custom-date-picker {
-    border: 2px solid #ff6b6b;
-    border-radius: 8px;
-  }
+import 'austro-byte-datepicker/dist/theme/custom.css';
 
-  .custom-input {
-    background-color: #fff5f5;
-    border: 1px solid #ff6b6b;
-    border-radius: 4px;
-    padding: 10px 12px;
-    font-size: 14px;
+// Or create your own theme file
+const customTheme = `
+  .rdrCalendarWrapper {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   }
-
-  .custom-input:focus {
-    outline: none;
-    border-color: #ff6b6b;
-    box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2);
+  
+  .rdrDayToday {
+    background: #3d91ff !important;
+    color: white !important;
   }
 `;
-
-function CustomStyledExample() {
-  return (
-    <div>
-      <style>{customStyles}</style>
-      
-      <DateRangePicker
-        ranges={[dateRange]}
-        onChange={handleRangeChange}
-        className="custom-date-picker"
-        inputClassName="custom-input"
-        placeholder="Custom styled picker"
-      />
-
-      <DateTimePicker
-        date={selectedDateTime}
-        onChange={setSelectedDateTime}
-        className="custom-date-picker"
-        inputClassName="custom-input"
-        placeholder="Custom styled date time picker"
-      />
-    </div>
-  );
-}
 ```
 
-## ⚙️ Configuration Options
+## 🌍 Internationalization
 
-### Common Props
+```jsx
+import { format } from 'date-fns';
+import { enUS, faIR, deDE } from 'date-fns/locale';
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | - | Wrapper CSS class name |
-| `color` | `string` | `#3d91ff` | Primary color for selections |
-| `minDate` | `Date` | - | Minimum selectable date |
-| `maxDate` | `Date` | - | Maximum selectable date |
-| `disabledDates` | `Date[]` | `[]` | Array of disabled dates |
-| `disabledDay` | `function` | - | Function to disable specific days |
-| `locale` | `object` | `enUS` | Date-fns locale object |
+// English (default)
+<Calendar locale={enUS} />
+
+// Persian
+<Calendar locale={faIR} />
+
+// German
+<Calendar locale={deDE} />
+```
+
+## ♿ Accessibility
+
+All components are built with accessibility in mind:
+
+- **ARIA Labels**: Proper ARIA attributes for screen readers
+- **Keyboard Navigation**: Full keyboard support
+- **Focus Management**: Proper focus handling
+- **Screen Reader Support**: Compatible with all major screen readers
+
+```jsx
+<Calendar
+  ariaLabel="Select a date"
+  ariaLabelledBy="date-picker-label"
+  ariaDescribedBy="date-picker-description"
+/>
+```
+
+## 📱 Mobile Support
+
+The components are fully responsive and optimized for mobile devices:
+
+- **Touch Friendly**: Large touch targets
+- **Swipe Gestures**: Intuitive swipe navigation
+- **Responsive Design**: Adapts to all screen sizes
+- **Mobile Optimized**: Performance optimized for mobile
+
+## 🚀 Performance
+
+- **React Hooks**: Built with modern React patterns
+- **Memoization**: Optimized re-renders
+- **Lazy Loading**: Components load only when needed
+- **Bundle Size**: Optimized for minimal bundle impact
+
+## 🔧 API Reference
 
 ### Calendar Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `date` | `Date` | - | Selected date value |
-| `onChange` | `function` | - | Date change callback |
-| `showMonthAndYearPickers` | `boolean` | `true` | Show month/year selectors |
-| `showMonthArrow` | `boolean` | `true` | Show month navigation arrows |
-| `dragSelectionEnabled` | `boolean` | `true` | Enable drag selection |
-| `customInput` | `element` | - | Custom input element to use instead of default |
+| `date` | `Date` | `new Date()` | Selected date |
+| `onChange` | `function` | - | Date change handler |
+| `minDate` | `Date` | - | Minimum selectable date |
+| `maxDate` | `Date` | - | Maximum selectable date |
+| `disabledDates` | `Date[]` | `[]` | Dates to disable |
+| `showMonthDropdown` | `boolean` | `false` | Show month dropdown |
+| `showYearDropdown` | `boolean` | `false` | Show year dropdown |
 
 ### DateRangePicker Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `ranges` | `array` | `[]` | Array of range objects |
-| `onChange` | `function` | - | Range change callback |
+| `ranges` | `array` | `[]` | Array of date ranges |
+| `onChange` | `function` | - | Range change handler |
+| `months` | `number` | `1` | Number of months to show |
+| `direction` | `string` | `'horizontal'` | Layout direction |
 | `showSelectionPreview` | `boolean` | `true` | Show selection preview |
 | `moveRangeOnFirstSelection` | `boolean` | `false` | Move range on first selection |
-| `months` | `number` | `2` | Number of months to display side by side |
-| `direction` | `string` | `'horizontal'` | `'vertical'` or `'horizontal'` |
-| `rangeColors` | `array` | - | Colors for range selections |
-| `placeholder` | `string` | - | Input placeholder text |
-| `customInput` | `element` | - | Custom input element to use instead of default |
 
 ### DateTimePicker Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `date` | `Date` | - | Selected date and time |
-| `onChange` | `function` | - | Date/time change callback |
-| `hour12` | `boolean` | `true` | Use 12-hour format |
-| `showTime` | `boolean` | `true` | Show time selection (false = date only) |
-| `placeholder` | `string` | - | Input placeholder text |
-| `inputClassName` | `string` | - | Input CSS class name |
-| `customInput` | `element` | - | Custom input element to use instead of default |
+| `date` | `Date` | `new Date()` | Selected date and time |
+| `onChange` | `function` | - | DateTime change handler |
+| `showTimeSelect` | `boolean` | `false` | Show time selection |
+| `timeFormat` | `string` | `'HH:mm'` | Time format |
+| `timeIntervals` | `number` | `15` | Time interval in minutes |
 
-## 🎨 Theming
+## 🛠️ Development
+
+### Building from Source
+
+```bash
+# Clone the repository
+git clone https://github.com/mostafahosseinidb/ReactDatePicker.git
+cd ReactDatePicker
+
+# Install dependencies
+yarn install
+
+# Start development server
+yarn start
+
+# Build for production
+yarn build
+```
+
+### Running Tests
+
+```bash
+# Run all tests
+yarn test
+
+# Run tests in watch mode
+yarn test:watch
+
+# Run tests with coverage
+yarn test:coverage
+```
+
+## 📄 License
+
+MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+### Development Setup
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests for new features
+5. Ensure all tests pass
+6. Submit a pull request
+
+## 📞 Support
+
+- **Documentation**: [GitHub Wiki](https://github.com/mostafahosseinidb/ReactDatePicker/wiki)
+- **Issues**: [GitHub Issues](https://github.com/mostafahosseinidb/ReactDatePicker/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/mostafahosseinidb/ReactDatePicker/discussions)
+
+## 🎯 Roadmap
+
+- [ ] TypeScript definitions
+- [ ] More theme options
+- [ ] Advanced customization
+- [ ] Performance optimizations
+- [ ] Additional locales
+- [ ] Unit tests coverage
+- [ ] E2E tests
+- [ ] Storybook documentation
+
+## 🙏 Acknowledgments
+
+- Built with [React](https://reactjs.org/)
+- Date manipulation with [date-fns](https://date-fns.org/)
+- Styling with [SCSS](https://sass-lang.com/)
+- Icons from [Emoji](https://emojipedia.org/)
+
+---
+
+**Built with ❤️ by [Mostafa Hosseini](https://github.com/mostafahosseinidb)**
+
+[📚 GitHub](https://github.com/mostafahosseinidb/ReactDatePicker) | [📦 npm](https://www.npmjs.com/package/austro-byte-datepicker) | [🎮 Demo](https://mostafahosseinidb.github.io/ReactDatePicker/)
