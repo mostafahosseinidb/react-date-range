@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AustroByte Date Picker - Live Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #3d91ff 0%, #2c5aa0 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero-section h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .hero-section p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .install-box {
+            background: #e8f5e8;
+            border: 3px solid #28a745;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .install-box h3 {
+            color: #28a745;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .install-code {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            margin: 15px 0;
+            display: inline-block;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: #3d91ff;
+            box-shadow: 0 10px 25px rgba(61, 145, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            color: #333;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .code-example {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 20px 0;
+        }
+
+        .demo-preview {
+            background: #f8f9fa;
+            border: 2px dashed #3d91ff;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .demo-preview h4 {
+            color: #3d91ff;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .demo-preview p {
+            color: #666;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .footer a {
+            color: #3d91ff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .social-links {
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            margin: 0 10px;
+            padding: 8px 15px;
+            background: #3d91ff;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .social-links a:hover {
+            background: #2c5aa0;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🗓️ AustroByte Date Picker</h1>
+            <p>A comprehensive React date picker component with advanced features</p>
+        </div>
+
+        <div class="content">
+            <div class="hero-section">
+                <h2>🚀 Ready to Use React Date Picker</h2>
+                <p>Build beautiful, accessible, and customizable date pickers for your React applications with ease.</p>
+            </div>
+
+            <div class="install-box">
+                <h3>📦 Quick Installation</h3>
+                <div class="install-code">npm install austro-byte-datepicker</div>
+                <p>Then install peer dependencies: <code>npm install react date-fns</code></p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>🗓️ Multiple Pickers</h3>
+                    <p>Single date, date range, and date-time pickers with consistent API and styling.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h3>🎨 Highly Customizable</h3>
+                    <p>Extensive theming options, custom inputs, and flexible styling to match your design.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h3>♿ Accessibility First</h3>
+                    <p>Full ARIA support, keyboard navigation, and screen reader compatibility.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h3>📱 Mobile Responsive</h3>
+                    <p>Optimized for all devices with touch-friendly interactions and responsive design.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h3>🚀 Performance Optimized</h3>
+                    <p>Built with React hooks, memoization, and efficient rendering for smooth performance.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h3>🕐 Time Selection</h3>
+                    <p>12-hour and 24-hour format support with optional time picker integration.</p>
+                </div>
+            </div>
+
+            <div class="demo-preview">
+                <h4>🎯 Component Preview</h4>
+                <p>Here's what you can build with AustroByte Date Picker:</p>
+                <div style="margin-top: 20px;">
+                    <div style="display: inline-block; padding: 10px 20px; background: #3d91ff; color: white; border-radius: 8px; margin: 5px;">
+                        📅 Single Date Picker
+                    </div>
+                    <div style="display: inline-block; padding: 10px 20px; background: #e74c3c; color: white; border-radius: 8px; margin: 5px;">
+                        📆 Date Range Picker
+                    </div>
+                    <div style="display: inline-block; padding: 10px 20px; background: #28a745; color: white; border-radius: 8px; margin: 5px;">
+                        🕐 Date Time Picker
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-example">
+                <h4 style="color: #e2e8f0; margin-bottom: 15px;">💻 Basic Usage Example:</h4>
+                <pre><code>import React, { useState } from 'react';
+import { Calendar, DateRangePicker } from 'austro-byte-datepicker';
+import 'austro-byte-datepicker/dist/styles.css';
+
+function App() {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [dateRange, setDateRange] = useState({
+    startDate: new Date(),
+    endDate: new Date(),
+  });
+
+  return (
+    &lt;div&gt;
+      &lt;Calendar
+        date={selectedDate}
+        onChange={setSelectedDate}
+      /&gt;
+      
+      &lt;DateRangePicker
+        ranges={[dateRange]}
+        onChange={setDateRange}
+      /&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+            </div>
+
+            <div class="demo-preview">
+                <h4>🎨 Customization Examples</h4>
+                <p>Customize colors, borders, and styling to match your design system:</p>
+                <div style="margin-top: 15px;">
+                    <div style="display: inline-block; padding: 12px 16px; border: 2px solid #e74c3c; border-radius: 8px; background-color: #fdf2f2; color: #c0392b; font-weight: 600; margin: 5px;">
+                        📅 Custom Input Style
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Built with ❤️ by <a href="https://github.com/mostafahosseinidb">Mostafa Hosseini</a></p>
+            <div class="social-links">
+                <a href="https://github.com/mostafahosseinidb/ReactDatePicker">📚 GitHub Repository</a>
+                <a href="https://www.npmjs.com/package/austro-byte-datepicker">📦 npm Package</a>
+            </div>
+            <p style="margin-top: 20px; opacity: 0.8;">MIT License • Open Source • Community Driven</p>
+        </div>
+    </div>
+</body>
+</html> 
