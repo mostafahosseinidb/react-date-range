@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AustroByte Date Picker - Simple Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #3d91ff 0%, #2c5aa0 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .demo-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #e9ecef;
+        }
+
+        .demo-card h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .demo-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .install-section {
+            background: #e8f5e8;
+            border: 2px solid #28a745;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .install-section h3 {
+            color: #28a745;
+            margin-bottom: 15px;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .footer a {
+            color: #3d91ff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🗓️ AustroByte Date Picker</h1>
+            <p>A comprehensive React date picker component</p>
+        </div>
+
+        <div class="content">
+            <div class="install-section">
+                <h3>📦 Quick Install</h3>
+                <div class="code-block">npm install austro-byte-datepicker</div>
+            </div>
+
+            <div class="demo-card">
+                <h3>✨ Features</h3>
+                <p>• Multiple Date Pickers (Single date, date range, date-time)</p>
+                <p>• Highly Customizable with extensive theming options</p>
+                <p>• Accessibility First with full ARIA support</p>
+                <p>• Mobile Responsive design</p>
+                <p>• Performance Optimized with React hooks</p>
+                <p>• Time Selection with 12/24-hour formats</p>
+            </div>
+
+            <div class="demo-card">
+                <h3>💻 Basic Usage</h3>
+                <div class="code-block">import React, { useState } from 'react';
+import { Calendar, DateRangePicker } from 'austro-byte-datepicker';
+import 'austro-byte-datepicker/dist/styles.css';
+
+function App() {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  
+  return (
+    &lt;Calendar
+      date={selectedDate}
+      onChange={setSelectedDate}
+    /&gt;
+  );
+}</div>
+            </div>
+
+            <div class="demo-card">
+                <h3>🎯 Component Examples</h3>
+                <p><strong>📅 Single Date Picker:</strong> Simple calendar component</p>
+                <p><strong>📆 Date Range Picker:</strong> Advanced range selection</p>
+                <p><strong>🕐 Date Time Picker:</strong> Combined date and time</p>
+                <p><strong>🎨 Custom Input:</strong> Use your own input elements</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>📚 <a href="https://github.com/mostafahosseinidb/ReactDatePicker">GitHub</a> | 📦 <a href="https://www.npmjs.com/package/austro-byte-datepicker">npm</a></p>
+            <p>Built with ❤️ by <a href="https://github.com/mostafahosseinidb">Mostafa Hosseini</a></p>
+        </div>
+    </div>
+</body>
+</html> 
